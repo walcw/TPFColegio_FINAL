@@ -1,0 +1,311 @@
+body{
+    background-color:bisque;
+   
+
+}
+/* comentarios en CSS */
+.titulo{
+    background-color: blue;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 20px;
+    font-size: 24px;
+}
+
+.tverde{
+    background-color: rgb(7, 129, 68);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 20px;
+}
+.formulario{
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.imagen{
+    border-radius: 30px;
+}
+
+
+@font-face {
+    font-family: 'code_boldregular';
+    src: url('code_bold-webfont.eot');
+    src: url('code_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('code_bold-webfont.woff2') format('woff2'),
+         url('code_bold-webfont.woff') format('woff'),
+         url('code_bold-webfont.ttf') format('truetype'),
+         url('code_bold-webfont.svg#code_boldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+*{
+    font-family: 'code_boldregular';
+}
+
+body{
+    background-image: url(back.jpg);
+}
+
+#contReloj{
+    background: rgba(0,0,0,.7);
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    width: 160px;
+    height: 35px;
+    border-radius: 7px;
+}
+
+#contReloj > p{
+    color: #fff;
+    display: inline-block;
+    font-family: 'code_boldregular';
+    font-size: 1em;
+    padding: 3px;
+}
+.alert-success {
+    color: white;  /* Cambia el color de la letra */
+    background-color: green;  /* Cambia el color de fondo */
+    font-family: Arial, sans-serif;  /* Cambia la fuente */
+    padding: 10px;  /* Añade espacio interno */
+    border-radius: 5px;  /* Redondea las esquinas */
+}
+
+
+.alert-error {
+    color: white;
+    background-color: red;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+}
+.modal-header-custom {
+    background-color: rgb(15, 163, 248); ; /* Fondo oscuro */
+    color: white; /* Color de letra blanca */
+    font-family: 'Arial', sans-serif; /* Cambia la fuente */
+}
+
+
+.modal-body-custom {
+    font-family: 'Verdana', sans-serif; /* Cambia la fuente */
+    color: hsl(0, 6%, 6%); /* Color de letra gris */
+    font-size: 17px; /* Tamaño de la fuente */
+}
+.modal-footer-custom {
+    background-color: rgb(15, 163, 248); /* Fondo claro */
+}
+
+.btn-danger-custom {
+    background-color: #dc3545; /* Color rojo personalizado */
+    border-color: #dc3545;
+    color: white; /* Color de letra blanca */
+    font-family: 'Arial', sans-serif; /* Cambia la fuente */
+}
+
+.btn-secondary-custom {
+    background-color: #6c757d; /* Color gris personalizado */
+    border-color: #6c757d;
+    color: white; /* Color de letra blanca */
+    font-family: 'Arial', sans-serif; /* Cambia la fuente */
+}
+
+
+.nav-link {
+    color: #000; /* Color inicial de los ítems del menú */
+    text-decoration: none;
+    padding: 10px; /* Añadimos un poco de padding para mejor visualización */
+    border-radius: 0; /* Inicialmente sin borde redondeado */
+}
+
+.nav-link:hover {
+    color: #fff; /* Color al pasar el ratón por encima */
+    background-color: #068043; /* Fondo al pasar el ratón por encima */
+    border-radius: 7px; /* Bordes redondeados */
+    transition: all 0.3s ease-in-out; /* Transición suave */
+
+}
+
+/* Estilos para la tabla de cursos */
+.debug-block {
+    background: lightblue;
+    width: 95%;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    width: 95%;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.table-wrapper table {
+    margin: 0;
+}
+.pagination .page-link:hover {
+    color: #007bff; /* Cambia este valor al color que prefieras */
+    background-color: #e9ecef; /* Color de fondo al hacer hover (opcional) */
+    border-color: #007bff; /* Cambia este valor para ajustar el color del borde */
+}
+
+/* Reproductor general */
+#audio-player {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Barra de progreso */
+.progress {
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #198754, #20c997);
+    transition: width 0.4s ease;
+}
+
+/* Título de pista actual */
+#current-track-title {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Lista de música */
+#music-results {
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+}
+
+.list-group-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #e2f0d9;
+}
+
+/* Pista activa */
+.active-track {
+    background-color: #d1e7dd;
+    font-weight: bold;
+    border-left: 4px solid #198754;
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+#volume-control {
+    accent-color: #198754; /* verde moderno */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#volume-control:hover {
+    transform: scale(1.05);
+}
+/* Modo claro (por defecto) */
+/* body.warning-mode {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+body.light-mode #music-results {
+    background-color: #ffffff;
+}
+
+body.light-mode .active-track {
+    background-color: #d1e7dd;
+    border-left: 4px solid #198754;
+} */
+
+/* Modo oscuro */
+/* body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+body.dark-mode #music-results {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .active-track {
+    background-color: #343a40;
+    border-left: 4px solid #0d6efd;
+}
+
+body.dark-mode .btn {
+    border: none;
+}
+
+
+
+ */
+
+ /* 1. Contenedor principal: #contRelojFecha */
+/* Es el que agrupa la hora y la fecha y le da el fondo negro */
+#contRelojFecha {
+    /* Mantenemos estas propiedades cruciales para apilar */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    /* <-- CLAVE 1: Centra todo el contenido (Hora y Fecha) horizontalmente */
+    justify-content: center;
+
+    /* Propiedades de estilo para el recuadro negro */
+    background-color: #000000;
+    color: white; 
+    padding: 2px 10px; 
+    border-radius: 5px; 
+    margin-right: 10px; 
+    
+    /* Esta propiedad asegura que el texto dentro de este bloque se centre. */
+    text-align: center; /* <-- CLAVE 2: Asegura que el texto (la fecha) se centre */
+}
+
+/* 2. Contenedor de la Hora: #contReloj */
+/* Mantiene la hora en una sola línea */
+#contReloj {
+    display: flex; 
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1; 
+    margin: 0;
+    padding: 0;
+}
+
+/* 3. Estilo para la nueva Fecha: #pFechaCompleta */
+#pFechaCompleta {
+    font-size: 0.7rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    line-height: 1; 
+    margin-top: 2px;
+    opacity: 0.85; 
+    /* No necesita text-align: center aquí si lo tiene el padre (#contRelojFecha), 
+       pero es bueno como respaldo. */
+    text-align: center;
+}

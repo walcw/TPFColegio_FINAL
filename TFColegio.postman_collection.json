@@ -1,0 +1,378 @@
+{
+	"info": {
+		"_postman_id": "b7ef12b0-fba6-4da0-9f6b-ec28fa0fa262",
+		"name": "TFColegio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27273679"
+	},
+	"item": [
+		{
+			"name": "listarAlumnos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/alumnos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alumnos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarAlumnos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/alumnos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alumnos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearAlumnos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Sofia\",\r\n  \"apellido\": \"Gomez\",\r\n  \"email\": \"sofia.gomez@ejemplo.com\",\r\n  \"cursos\": [\r\n    {\r\n      \"id\": 5\r\n    },\r\n    {\r\n      \"id\": 2\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/alumnos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alumnos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificarAlumno",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":3,\"nombre\":\"walter\",\"apellido\":\"solis Modificado\",\"email\":\"walter.solis@email.com\",\"cursos\":[{\"id\":5,\"nombre\":\"Matematica\",\"dsemana\":\"martes\",\"turno\":\"mañana\",\"profesor\":{\"id\":2,\"nombre\":\"Jorge\",\"apellido\":\"Sánchez\",\"especialidad\":\"Programacion\"}}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/alumnos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alumnos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarAlumnos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/alumnos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"alumnos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarProfesores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/profesores",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"profesores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarProfesores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/profesores/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"profesores",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearProfesores",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Mariana\",\r\n  \"apellido\": \"Lopez\",\r\n  \"especialidad\": \"Matematica\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/profesores",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"profesores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificarProfesores",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"nombre\": \"Carlos Modificado\",\r\n  \"apellido\": \"Rios\",\r\n  \"especialidad\": \"Programacion\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/profesores/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"profesores",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarProfesores",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/profesores/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"profesores",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listarCursos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/cursos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscarCursos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/cursos/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cursos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearCursos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Fisica Moderna\",\r\n  \"dsemana\": \"jueves\",\r\n  \"turno\": \"tarde\",\r\n  \"profesor\": { \r\n    \"id\": 1 \r\n  }\r\n  // No incluimos 'alumnos' porque la relación Many-to-Many se gestiona\r\n  // primariamente al crear/actualizar el Alumno.\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/cursos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificarCursos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 5,\r\n  \"nombre\": \"Matematica Avanzada\",\r\n  \"dsemana\": \"martes\",\r\n  \"turno\": \"mañana\",\r\n  \"profesor\": { \r\n    \"id\": 2 \r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/cursos/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cursos",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminarCursos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/cursos/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cursos",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
