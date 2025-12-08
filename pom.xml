@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ar.edu.centro8.daw</groupId>
-	<artifactId>tp4conthymeleaf</artifactId>
+	<artifactId>tpracticofinal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tp4conthymeleaf</name>
+	<name>tpracticofinal</name>
 	<description>Demo project for Spring Boot</description>
 	<url />
 	<licenses>
