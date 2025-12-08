@@ -7,7 +7,7 @@
 # CMD ["--spring.profiles.active=prod"]
 
 #Etapa de build
-FROM maven:4.0.0-openjdk-21 AS build
+FROM maven:3.8.5-openjdk-21 AS build
 WORKDIR /app
 COPY pom.xml ./
 RUN mvn -B dependency:go-offline
@@ -15,6 +15,7 @@ COPY src ./src
 RUN mvn -B -DskipTests clean package
 
 #Container para ejecutar la aplicacion
+# 
 FROM openjdk:21-jdk-slim
 WORKDIR /app
 ARG JAR_FILE=target/tpracticofinal-0.0.1-SNAPSHOT.jar
