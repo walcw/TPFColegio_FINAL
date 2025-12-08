@@ -17,7 +17,8 @@ RUN mvn -B -DskipTests clean package
 #Container para ejecutar la aplicacion
 FROM openjdk:21-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/*.jar /app/app.jar
+ARG JAR_FILE=target/tpracticofinal-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/${JAR_FILE} /app/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app/app.jar"]
 
