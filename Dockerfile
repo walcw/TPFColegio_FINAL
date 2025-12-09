@@ -1,22 +1,65 @@
-# FROM openjdk:21-jdk-slim
-# VOLUME /tmp
-# ARG JAR_FILE=target/*.jar
-# COPY ${JAR_FILE} app.jar
-# ENTRYPOINT ["java","-jar","/app.jar"]
-# EXPOSE 8080
-# CMD ["--spring.profiles.active=prod"]
-
-#Etapa de build
-FROM maven:3.8.5-openjdk-21 AS build
+# Build stage — usa JDK y el Maven Wrapper presente en el repo
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
-COPY pom.xml ./
-RUN mvn -B dependency:go-offline
-COPY src ./src
-RUN mvn -B -DskipTests clean package
 
-#Container para ejecutar la aplicacion
-# 
-FROM openjdk:21-jdk-slim
+# Copiar wrapper, pom y fuentes
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src ./src
+
+# Asegurar permisos ejecutables del wrapper y preparar entorno
+RUN chmod +x ./mvnw
+# instalar herramientas que `mvnw` puede necesitar para descargar Maven
+RUN apt-get update && apt-get install -y --no-install-recommends curl unzip ca-certificates && rm -rf /var/lib/apt/lists/*
+
+# Ejecutar build con el wrapper
+RUN ./mvnw -B -DskipTests clean package
+
+# Run stage
+FROM eclipse-temurin:21-jdk
+WORKDIR /app
+ARG JAR_FILE=target/tpracticofinal-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/${JAR_FILE} /app/app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app/app.jar"]
+# Build stage — usa JDK y el Maven Wrapper presente en el repo
+FROM eclipse-temurin:21-jdk
+WORKDIR /app
+
+# Copiar wrapper, pom y fuentes
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src ./src
+
+# Asegurar permisos ejecutables del wrapper y construir
+RUN chmod +x ./mvnw
+RUN ./mvnw -B -DskipTests clean package
+
+# Run stage
+FROM eclipse-temurin:21-jdk
+WORKDIR /app
+ARG JAR_FILE=target/tpracticofinal-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/${JAR_FILE} /app/app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app/app.jar"]
+# Build stage — usa JDK y el Maven Wrapper presente en el repo
+FROM eclipse-temurin:21-jdk 
+WORKDIR /app
+
+# Copiar wrapper, pom y fuentes
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src ./src
+
+# Asegurar permisos ejecutables del wrapper y construir
+RUN chmod +x ./mvnw
+RUN ./mvnw -B -DskipTests clean package
+
+# Run stage
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
 ARG JAR_FILE=target/tpracticofinal-0.0.1-SNAPSHOT.jar
 COPY --from=build /app/${JAR_FILE} /app/app.jar
@@ -24,37 +67,4 @@ EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app/app.jar"]
 
 
-# COPY --from=0 / /
-# RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
-# RUN apt-get clean
-# RUN java -version
-# RUN java -jar /app.jar --spring.profiles.active=prod
-# RUN ./app.jar
-# ENV key=value
 
-
-
-
-
-# This Dockerfile sets up a Spring Boot application to run in a Docker container.
-# It uses the OpenJDK 21 slim image as the base image for running the application.
-# The application JAR file is expected to be located in the 'target' directory
-# after building the Spring Boot project.
-# The application listens on port 8080, which is exposed in the Dockerfile.
-# The default Spring profile is set to 'prod', but this can be overridden
-# when running the container.
-
-# Use the following command to build the Docker image:
-# docker build -t your-image-name .
-# Replace 'your-image-name' with the desired name for your Docker image.
-# To run the Docker container, use:
-# docker run -p 8080:8080 your-image-name
-# This maps port 8080 of the container to port 8080 on the host machine.
-# You can also pass additional Spring profiles or arguments by appending them to the docker run command.
-# For example:
-# docker run -p 8080:8080 your-image-name --spring.profiles.active=dev
-# This will run the application with the 'dev' profile active.
-# Make sure to build your Spring Boot application and generate the JAR file
-# in the 'target' directory before building the Docker image.
-# Note: Adjust the JAR_FILE argument if your build process outputs the JAR file
-# to a different location or with a different name.
