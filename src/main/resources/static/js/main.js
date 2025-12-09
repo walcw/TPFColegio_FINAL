@@ -94,6 +94,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+     const sampleTracks = [
+    { title: "Tema 1: Always On My Mind", url: "/music/Always On My Mind (152kbit_Opus) (onl....mp3" },
+    { title: "Tema 2: Bee Gees - Tragedy", url: "/music/Bee Gees - Tragedy.mp3" },
+    { title: "Tema 3: How Deep Is Your Love", url: "/music/HowDeepIsYourLove.mp3" },
+    { title: "Tema 4: More than a woman", url: "/music/More than a woman.mp3" },
+    { title: "Tema 5: My Way", url: "/music/My Way.mp3" }
+    // AÑADIR AQUÍ TODAS LAS DEMÁS PISTAS MP3 QUE TENGAS EN /static/music/
+    ];
+
     // --- Lógica para búsqueda y reproducción de música en el nav ---
     const musicInput = document.getElementById('music-input');
     const musicSearchBtn = document.getElementById('music-search-btn');
@@ -186,6 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
+   
 
     // Buscar en sampleTracks por título o URL
     function searchTracks(query) {
@@ -208,30 +218,37 @@ document.addEventListener('DOMContentLoaded', function () {
                 renderResults([]);
                 return;
             }
+            // [MODIFICADO] **Forzar el uso de la lista estática (searchTracks)**
+            const results = searchTracks(q);
+            renderResults(results);
 
-            // Llamar al endpoint del servidor para buscar archivos locales
-            fetch('/api/music/search?q=' + encodeURIComponent(q))
-                .then(r => {
-                    if (!r.ok) throw new Error('Error en búsqueda');
-                    return r.json();
-                })
-                .then(list => {
-                    // la respuesta debe ser un array de objetos {title, url, type}
-                    if (Array.isArray(list) && list.length) {
-                        renderResults(list.map(item => ({ title: item.title, url: item.url })));
-                    } else {
-                        renderResults([]);
-                    }
-                })
-                .catch(err => {
-                    console.error('Búsqueda remota falló, usando pistas de ejemplo:', err);
-                    const results = searchTracks(q);
-                    renderResults(results);
-                });
-            // ocultar la lista
-            musicSearchBtn.addEventListener('click', () => {
-                //cerrar lista de musica.mp3 en un tiempo de 500
-                musicResults.classList.toggle('d-none');
+            // [MODIFICADO] El botón "Ver lista" también oculta/muestra la lista
+            // Utilizamos toggle para mostrar u ocultar los resultados
+            musicResults.classList.toggle('d-none');
+
+            // Llamar al endpoint del servidor para buscar archivos locales...
+            // fetch('/api/music/search?q=' + encodeURIComponent(q))
+            //     .then(r => {
+            //         if (!r.ok) throw new Error('Error en búsqueda');
+            //         return r.json();
+            //     })
+            //     .then(list => {
+            //         // la respuesta debe ser un array de objetos {title, url, type}
+            //         if (Array.isArray(list) && list.length) {
+            //             renderResults(list.map(item => ({ title: item.title, url: item.url })));
+            //         } else {
+            //             renderResults([]);
+            //         }
+            //     })
+            //     .catch(err => {
+            //         console.error('Búsqueda remota falló, usando pistas de ejemplo:', err);
+            //         const results = searchTracks(q);
+            //         renderResults(results);
+            //     });
+            // ocultar la lista...
+            // musicSearchBtn.addEventListener('click', () => {.
+                //cerrar lista de musica.mp3 en un tiempo de 500.....
+                // musicResults.classList.toggle('d-none');.
 
 
                 // const toggleMusicListBtn = document.getElementById('toggleMusicList');
@@ -243,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // }
 
 
-            });
+            // });.
 
 
 
@@ -300,45 +317,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-    // if (musicSearchBtn) {
-    //     musicSearchBtn.addEventListener('click', () => {
-    //         const q = musicInput ? musicInput.value.trim() : '';
-    //         setTimeout(() => {
-
-    //             renderResults(searchTracks(q));
-    //             const q = musicInput ? musicInput.value.trim() : '';
-
-    //             if (q && (q.startsWith('http') || q.endsWith('.mp3') || q.startsWith('/'))) {
-    //                 setAudioSource(q);
-    //                 renderResults([]);
-    //                 return;
-    //             }
-
-    //             fetch('/api/music/search?q=' + encodeURIComponent(q))
-    //                 .then(r => {
-    //                     if (!r.ok) throw new Error('Error en búsqueda');
-    //                     return r.json();
-    //                 })
-    //                 .then(list => {
-
-
-    //                     if (Array.isArray(list) && list.length) {
-    //                         renderResults(list.map(item => ({ title: item.title, url: item.url })));
-    //                     } else {
-    //                         renderResults([]);
-    //                     }
-    //                 })
-    //                 .catch(err => {
-    //                     console.error('Búsqueda remota falló, usando pistas de ejemplo:', err);
-    //                     const results = searchTracks(q);
-    //                     renderResults(results);
-    //                 });
-
-    //           });
-    //  });
-
-    // }
 
     if (musicPlayBtn) {
         musicPlayBtn.addEventListener('click', () => {
