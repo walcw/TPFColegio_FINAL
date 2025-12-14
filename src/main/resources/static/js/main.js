@@ -20,15 +20,15 @@ function mostrarFecha() {
     const elementoFecha = document.getElementById('pFechaCompleta');
     if (elementoFecha) {
         const ahora = new Date();
-        
+
         // Opciones para formatear la fecha con el nombre del día en español
-        const opciones = { 
-            weekday: 'long', 
-            day: '2-digit', 
-            month: '2-digit', 
-            year: 'numeric' 
+        const opciones = {
+            weekday: 'long',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
         };
-        
+
         // Obtener la fecha formateada
         let fechaFormateada = ahora.toLocaleDateString('es-ES', opciones);
 
@@ -94,13 +94,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-     const sampleTracks = [
-    { title: "Tema 1: Always On My Mind", url: "/music/Always_On_My_Mind.mp3" },
-    { title: "Tema 2: Bee Gees - Tragedy", url: "/music/Bee Gees - Tragedy.mp3" },
-    { title: "Tema 3: How Deep Is Your Love", url: "/music/HowDeepIsYourLove.mp3" },
-    { title: "Tema 4: More than a woman", url: "/music/More_than_a_woman.mp3" },
-    { title: "Tema 5: My Way", url: "/music/My_Way.mp3" },
-    // AÑADIR AQUÍ TODAS LAS DEMÁS PISTAS MP3 QUE TENGAS EN /static/music/
+    const sampleTracks = [
+        { title: "Tema 1: Always On My Mind", url: "/music/Always_On_My_Mind.mp3" },
+        { title: "Tema 2: Bee Gees - Tragedy", url: "/music/Bee_Gees_-_Tragedy.mp3" },
+        { title: "Tema 3: How Deep Is Your Love", url: "/music/How_Deep_Is_Your_Love.mp3" },
+        { title: "Tema 4: More than a woman", url: "/music/More_than_a_woman.mp3" },
+        { title: "Tema 5: My Way", url: "/music/My_Way.mp3" },
+        // AÑADIR AQUÍ TODAS LAS DEMÁS PISTAS MP3 QUE TENGAS EN /static/music/
     ];
 
     // --- Lógica para búsqueda y reproducción de música en el nav ---
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    
+
 
 
 
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     }
-   
+
 
     // Buscar en sampleTracks por título o URL
     function searchTracks(query) {
@@ -439,7 +439,37 @@ document.addEventListener('DOMContentLoaded', function () {
                 li.className = 'list-group-item list-group-item-action';
                 li.textContent = item.title;
                 li.style.cursor = 'pointer';
-                li.addEventListener('click', () => setAudioSource(item.url));
+                // li.addEventListener('click', () => setAudioSource(item.url));
+
+                li.addEventListener('click', () => {
+                    if (!audioPlayer) return;
+
+                    audioPlayer.src = item.url; // Establece la fuente
+
+                    audioPlayer.play().then(() => {
+                        // ÉXITO: La reproducción comenzó
+
+                        // Quitar clase activa de todas las pistas
+                        document.querySelectorAll('#music-results .list-group-item')
+                            .forEach(el => el.classList.remove('active-track'));
+
+                        // Agregar clase activa a la pista seleccionada
+                        li.classList.add('active-track');
+
+                        // Ocultar lista (SOLO si reproduce correctamente)
+                        musicResults.classList.add('d-none');
+
+                    }).catch(error => {
+                        // ERROR: La reproducción falló (ej: archivo no encontrado 404)
+                        console.error('Fallo al iniciar la reproducción. URL:', item.url, 'Error:', error);
+                        alert('Error al reproducir el tema. Revise la consola del navegador para detalles.');
+                        // La lista no se oculta, permanece visible
+                    });
+
+                    // Como setAudioSource ya no es llamado, actualizamos el botón manualmente,Actualiza el botón de Play/Pause
+                    updatePlayButton();
+                });
+
                 ul.appendChild(li);
             });
             container.appendChild(ul);
@@ -449,6 +479,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Render initial sample tracks
     // renderResults(sampleTracks);
-    
+
 
 });
