@@ -96,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const sampleTracks = [
         { title: "Tema 1: Always_On_My_Mind.mp3", url: "/music/Always_On_My_Mind.mp3" },
-        { title: "Tema 2: Bee Gees - Tragedy.mp3", url: "/music/Bee_Gees_-_Tragedy.mp3" },
-        { title: "Tema 3: How Deep Is Your Love.mp3", url: "/music/How_Deep_Is_Your_Love.mp3" },
-        { title: "Tema 4: More than a woman.mp3", url: "/music/More_than_a_woman.mp3" },
+        { title: "Tema 2: Bee_Gees_-_Tragedy.mp3", url: "/music/Bee_Gees_-_Tragedy.mp3" },
+        { title: "Tema 3: How_Deep_Is_Your_Love.mp3", url: "/music/How_Deep_Is_Your_Love.mp3" },
+        { title: "Tema 4: More_than_a_woman.mp3", url: "/music/More_than_a_woman.mp3" },
         { title: "Tema 5: My_Way.mp3", url: "/music/My_Way.mp3" },
         // AÑADIR AQUÍ TODAS LAS DEMÁS PISTAS MP3 QUE TENGAS EN /static/music/
     ];
