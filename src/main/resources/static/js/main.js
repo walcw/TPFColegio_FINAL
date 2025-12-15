@@ -262,25 +262,32 @@ document.addEventListener('DOMContentLoaded', function () {
             li.dataset.url = item.url;
 
             li.addEventListener('click', () => {
-                setAudioSource(item.url); // Reproducir
-
+                if (!audioPlayer) return;
+               // setAudioSource(item.url); // Reproducir
+                audioPlayer.src = item.url;
                 // Mostrar título actual
                 // document.getElementById('current-track-title').textContent = item.title;
-
-                // Quitar clase activa de todas las pistas
-                document.querySelectorAll('#music-results .list-group-item')
+                audioPlayer.play().then(() => {
+                // ÉXITO: La reproducción comenzó
+                  // Quitar clase activa de todas las pistas
+                  document.querySelectorAll('#music-results .list-group-item')
                     .forEach(el => el.classList.remove('active-track'));
 
-                // Agregar clase activa a la pista seleccionada
-                li.classList.add('active-track');
+                  // Agregar clase activa a la pista seleccionada
+                  li.classList.add('active-track');
 
-                // Ocultar lista
-                musicResults.classList.add('d-none');
-            });
-
-            musicResults.appendChild(li);
+                 // Ocultar lista
+                  musicResults.classList.add('d-none');
+                }).catch(error => {
+                    // ERROR: La reproducción falló
+                    console.error('Fallo al iniciar la reproducción. URL:', item.url, 'Error:', error);
+                    alert('Error al reproducir el tema. Revise la consola del navegador para detalles.');
+                });
+                    // Actualiza el botón de Play/Pause (afuera del then/catch)
+                    updatePlayButton();    
+           });
+          musicResults.appendChild(li);
         });
-
         musicResults.classList.remove('d-none'); // Mostrar lista
     }
 
@@ -444,29 +451,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 li.addEventListener('click', () => {
                     if (!audioPlayer) return;
 
-                    audioPlayer.src = item.url; // Establece la fuente
+                    audioPlayer.src = item.url; 
 
                     audioPlayer.play().then(() => {
-                        // ÉXITO: La reproducción comenzó
-
-                        // Quitar clase activa de todas las pistas
+                       
+                        
                         document.querySelectorAll('#music-results .list-group-item')
                             .forEach(el => el.classList.remove('active-track'));
 
-                        // Agregar clase activa a la pista seleccionada
+                        
                         li.classList.add('active-track');
 
-                        // Ocultar lista (SOLO si reproduce correctamente)
+                        
                         musicResults.classList.add('d-none');
 
                     }).catch(error => {
-                        // ERROR: La reproducción falló (ej: archivo no encontrado 404)
+                       
                         console.error('Fallo al iniciar la reproducción. URL:', item.url, 'Error:', error);
                         alert('Error al reproducir el tema. Revise la consola del navegador para detalles.');
-                        // La lista no se oculta, permanece visible
+                       
                     });
 
-                    // Como setAudioSource ya no es llamado, actualizamos el botón manualmente,Actualiza el botón de Play/Pause
+                    
                     updatePlayButton();
                 });
 
